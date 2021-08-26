@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.header-space {
+  margin-top: 5vh;
+  margin-bottom: 2vh;
+}
+
+.mb-2 {
+  margin-bottom: 2em;
+}

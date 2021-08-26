@@ -16,3 +16,7 @@
     transform: scale(1.05);
   }
   
+  .max-img {
+    width: 180px;
+    height: 180px;
+  }

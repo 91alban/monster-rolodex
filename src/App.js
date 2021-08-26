@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import './components/toggle/toggle.css';
 import { CardList } from './components/card-list/card-list.jsx';
 
 class App extends Component {
@@ -8,7 +9,8 @@ class App extends Component {
 
     this.state = {
       monsters: [],
-      searchField: ''
+      searchField: '',
+      luck: false
     };
   }
 
@@ -17,6 +19,11 @@ class App extends Component {
       .then(response => 
         response.json())
         .then(users => this.setState({ monsters: users }));
+  }
+
+  setLuck(e) {
+    debugger;
+    this.setState({ luck: e.target.checked }, () => console.log(this.state.luck));
   }
 
   render() {
@@ -28,8 +35,17 @@ class App extends Component {
 
     return (
       <div className="App">
-      <input type='search' placeholder='Search monsters' onChange={e => this.setState({ searchField: e.target.value },) }/>
-      <CardList monsters={filteredMonsters} />
+        <input type='search' placeholder='Search monsters' onChange={e => this.setState({ searchField: e.target.value },) }/>
+      <div className="mb-2">
+        <label className="switch">
+          <input onChange={e => this.setState({ luck: e.target.checked })} type="checkbox"/>
+          <span className="slider round"></span>
+        </label>
+        {
+          this.state.luck ? <label> Fuck go back!</label> : <label> Feeling lucky!</label>
+        }
+      </div>
+      <CardList luck={this.state.luck} monsters={filteredMonsters} />
       </div>
     );
   }
